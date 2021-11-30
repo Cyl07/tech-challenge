@@ -5,7 +5,16 @@ $pdo = new \PDO(DSN, USER, PASS);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = array_map('trim', $_POST);
+    $query = "insert into argonaute(name) values(:name)";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue("name", $name["name"], \PDO::PARAM_STR);
+    $statement->execute();
 }
+
+$query = "select name from argonaute";
+$statement = $pdo->prepare($query);
+$statement->execute();
+$names = $statement->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <!-- Member list -->
         <h2>Membres de l'équipage</h2>
         <section class="member-list">
-            <div class="member-item">Eleftheria</div>
-            <div class="member-item">Gennadios</div>
-            <div class="member-item">Lysimachos</div>
+            <?php foreach ($names as $name) : ?>
+                <div class="member-item"><?= $name["name"] ?></div>
+            <?php endforeach; ?>
         </section>
     </main>
 

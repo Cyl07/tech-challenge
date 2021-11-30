@@ -15,7 +15,9 @@ cd tech-challenge/
 mysql -u <pseudo> -p < database.sql
 ```
 
-3. Run the server:
+3. Copy _connec.php.dist to _connec.php and enter your information
+
+4. Run the server:
 ```bash
 php -S localhost:8000
 ```
