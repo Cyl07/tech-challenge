@@ -1,6 +1,6 @@
-CREATE DATABASE teckchall;
+CREATE DATABASE techchall;
 
-USE teckchall;
+USE techchall;
 
 CREATE TABLE argonaute(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
